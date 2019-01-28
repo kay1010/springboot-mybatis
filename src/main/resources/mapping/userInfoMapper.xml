@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fk.dao.userInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.fk.vo.userInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="OpenId" property="openid" jdbcType="VARCHAR" />
+    <result column="UnionId" property="unionid" jdbcType="VARCHAR" />
+    <result column="NickName" property="nickname" jdbcType="VARCHAR" />
+    <result column="AvatarUrl" property="avatarurl" jdbcType="VARCHAR" />
+    <result column="PhoneNumber" property="phonenumber" jdbcType="CHAR" />
+    <result column="CreateTime" property="createtime" jdbcType="VARCHAR" />
+    <result column="UpdateTime" property="updatetime" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.fk.vo.userInfo" extends="BaseResultMap" >
+    <result column="Result" property="result" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, OpenId, UnionId, NickName, AvatarUrl, PhoneNumber, CreateTime, UpdateTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    Result
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fk.vo.userInfo" >
+    insert into user_info (ID, OpenId, UnionId, 
+      NickName, AvatarUrl, PhoneNumber, 
+      CreateTime, UpdateTime, Result
+      )
+    values (#{id,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{unionid,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{avatarurl,jdbcType=VARCHAR}, #{phonenumber,jdbcType=CHAR}, 
+      #{createtime,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, #{result,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fk.vo.userInfo" >
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="openid != null" >
+        OpenId,
+      </if>
+      <if test="unionid != null" >
+        UnionId,
+      </if>
+      <if test="nickname != null" >
+        NickName,
+      </if>
+      <if test="avatarurl != null" >
+        AvatarUrl,
+      </if>
+      <if test="phonenumber != null" >
+        PhoneNumber,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="result != null" >
+        Result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null" >
+        #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarurl != null" >
+        #{avatarurl,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        #{phonenumber,jdbcType=CHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fk.vo.userInfo" >
+    update user_info
+    <set >
+      <if test="openid != null" >
+        OpenId = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null" >
+        UnionId = #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        NickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarurl != null" >
+        AvatarUrl = #{avatarurl,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        PhoneNumber = #{phonenumber,jdbcType=CHAR},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        Result = #{result,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.fk.vo.userInfo" >
+    update user_info
+    set OpenId = #{openid,jdbcType=VARCHAR},
+      UnionId = #{unionid,jdbcType=VARCHAR},
+      NickName = #{nickname,jdbcType=VARCHAR},
+      AvatarUrl = #{avatarurl,jdbcType=VARCHAR},
+      PhoneNumber = #{phonenumber,jdbcType=CHAR},
+      CreateTime = #{createtime,jdbcType=VARCHAR},
+      UpdateTime = #{updatetime,jdbcType=VARCHAR},
+      Result = #{result,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fk.vo.userInfo" >
+    update user_info
+    set OpenId = #{openid,jdbcType=VARCHAR},
+      UnionId = #{unionid,jdbcType=VARCHAR},
+      NickName = #{nickname,jdbcType=VARCHAR},
+      AvatarUrl = #{avatarurl,jdbcType=VARCHAR},
+      PhoneNumber = #{phonenumber,jdbcType=CHAR},
+      CreateTime = #{createtime,jdbcType=VARCHAR},
+      UpdateTime = #{updatetime,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
