@@ -6,6 +6,8 @@ import com.fk.vo.userInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * Created by Herdsric-2018-01 on 2019/1/24.
  */
