@@ -6,8 +6,8 @@ server:
 spring:
  datasource:
       name: test
-      url: jdbc:mysql://localhost:3306/luxmate_shop
-      username: luxmate
+      url: jdbc:mysql://localhost:3306/mall
+      username: root
       password: fkk702304
       type: com.alibaba.druid.pool.DruidDataSource
      #druid配置
